@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
+             x:Class="MapsInteraction.MainPage">
+
+    <Grid>
+        <maps:SfMaps x:Name="maps" Tapped="maps_Tapped" Panning="maps_Panning"
+                     EnablePanning="False" ZoomLevel="3">
+            <maps:SfMaps.Layers>
+                <maps:ImageryLayer x:Name="layer" GeoCoordinates="8.7832,34.5085" ZoomLevelChanging="layer_ZoomLevelChanging">
+                    <maps:ImageryLayer.Sublayers>
+                        <maps:ShapeFileLayer x:Name="subLayer" ShapeType="Polyline">
+                            <maps:ShapeFileLayer.ShapeSettings>
+                                <maps:ShapeSetting  ShapeStrokeThickness="4"></maps:ShapeSetting>
+                            </maps:ShapeFileLayer.ShapeSettings>
+                        </maps:ShapeFileLayer>
+                    </maps:ImageryLayer.Sublayers>
+                    <maps:ImageryLayer.MarkerSettings>
+                        <maps:MapMarkerSetting IconSize="20"/>
+                    </maps:ImageryLayer.MarkerSettings>
+                </maps:ImageryLayer>
+            </maps:SfMaps.Layers>
+        </maps:SfMaps>
+    </Grid>
+</ContentPage>
