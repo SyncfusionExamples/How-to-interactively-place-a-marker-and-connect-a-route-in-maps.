@@ -13,33 +13,24 @@
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
         <maps:SfMaps x:Name="maps" Tapped="maps_Tapped" Panning="maps_Panning"
-                     EnablePanning="False" >
-            <maps:SfMaps.Layers>
-                <maps:ImageryLayer x:Name="layer" ZoomLevelChanging="layer_ZoomLevelChanging">
-                    <maps:ImageryLayer.Sublayers>
-                        <maps:ShapeFileLayer x:Name="subLayer" ShapeType="Polyline">
-                            <maps:ShapeFileLayer.ShapeSettings>
-                                <maps:ShapeSetting ShapeFill="Red" ShapeStrokeThickness="4"></maps:ShapeSetting>
-                            </maps:ShapeFileLayer.ShapeSettings>
-                        </maps:ShapeFileLayer>
-                    </maps:ImageryLayer.Sublayers>
-                    <maps:ImageryLayer.MarkerSettings>
-                        <maps:MapMarkerSetting x:Name="markerSetting" IconColor="DarkOrange" 
+                     EnablePanning="False" ZoomLevel="3">
+                <maps:SfMaps.Layers>
+                    <maps:ImageryLayer x:Name="layer" GeoCoordinates="8.7832,34.5085" ZoomLevelChanging="layer_ZoomLevelChanging">
+                        <maps:ImageryLayer.Sublayers>
+                            <maps:ShapeFileLayer x:Name="subLayer" ShapeType="Polyline">
+                                <maps:ShapeFileLayer.ShapeSettings>
+                                    <maps:ShapeSetting  ShapeStrokeThickness="4"></maps:ShapeSetting>
+                                </maps:ShapeFileLayer.ShapeSettings>
+                            </maps:ShapeFileLayer>
+                        </maps:ImageryLayer.Sublayers>
+                        <maps:ImageryLayer.MarkerSettings>
+                            <maps:MapMarkerSetting x:Name="markerSetting" 
                                                 IconSize="20"
                                                ></maps:MapMarkerSetting>
-                    </maps:ImageryLayer.MarkerSettings>
-                    <maps:ImageryLayer.MarkerTemplate>
-                        <DataTemplate >
-                            <StackLayout IsClippedToBounds="false" HorizontalOptions="StartAndExpand" VerticalOptions="Center" HeightRequest="35">
-                                <Image Source="pin.png" Scale="1" Aspect="AspectFit " HorizontalOptions="StartAndExpand" VerticalOptions="Center"
-                               HeightRequest="35" WidthRequest="25" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </maps:ImageryLayer.MarkerTemplate>
-
-                </maps:ImageryLayer>
-            </maps:SfMaps.Layers>
-        </maps:SfMaps>
+                        </maps:ImageryLayer.MarkerSettings>
+                    </maps:ImageryLayer>
+                </maps:SfMaps.Layers>
+            </maps:SfMaps>
 
         <ScrollView Grid.Row="1">
             <Grid BackgroundColor="AliceBlue">
