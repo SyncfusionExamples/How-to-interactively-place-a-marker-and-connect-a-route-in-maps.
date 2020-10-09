@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -26,18 +27,13 @@ namespace MapsInteraction
         }
         private void maps_Tapped(object sender, Syncfusion.SfMaps.XForms.MapTappedEventArgs e)
         {
-            if (!editing.IsToggled)
-            {
-                var screenPoint = e.Position;
-                var geoPoint = layer.GetLatLonFromPoint(screenPoint);
-                MapMarker marker = new MapMarker();
-                marker.Latitude = geoPoint.Y.ToString();
-                marker.Longitude = geoPoint.X.ToString();
-                layer.Markers.Add(marker);
-                latitudeEntry.Text = Math.Round(geoPoint.Y, 2).ToString();
-                longitudeEntry.Text = Math.Round(geoPoint.X, 2).ToString();
-                subLayer.Points.Add(new Point(geoPoint.Y, geoPoint.X));
-            }
+            var screenPoint = e.Position;
+            var geoPoint = layer.GetLatLonFromPoint(screenPoint);
+            MapMarker marker = new MapMarker();
+            marker.Latitude = geoPoint.Y.ToString();
+            marker.Longitude = geoPoint.X.ToString();
+            layer.Markers.Add(marker);
+            subLayer.Points.Add(new Point(geoPoint.Y, geoPoint.X));
         }
 
         private void maps_Panning(object sender, Syncfusion.SfMaps.XForms.MapPanUpdatedEventArgs e)
@@ -45,15 +41,13 @@ namespace MapsInteraction
             if (maps.EnablePanning) return;
             var screenPoint = e.Position;
             var geoPoint = layer.GetLatLonFromPoint(screenPoint);
-            latitudeEntry.Text = Math.Round(geoPoint.Y, 2).ToString();
-            longitudeEntry.Text = Math.Round(geoPoint.X, 2).ToString();
 
-            if (e.Started && editing.IsToggled)
+            if (e.Started)
             {
-                markerSelectedIndex = CalculateNearestMarker(geoPoint, screenPoint);
+                markerSelectedIndex = CalculateNearestMarker(geoPoint);
             }
 
-            if (editing.IsToggled && markerSelectedIndex != -1 && !e.Started && !e.Completed)
+            if (markerSelectedIndex != -1 && !e.Started && !e.Completed)
             {
                 if (layer.Markers.Count > markerSelectedIndex)
                 {
@@ -71,22 +65,22 @@ namespace MapsInteraction
             }
         }
 
-        private int CalculateNearestMarker(Point geoPoint, Point screenPoint)
+        private int CalculateNearestMarker(Point geoPoint)
         {
             int markerIndex = -1;
-            var x = geoPoint.Y;
-            var y = geoPoint.X;
+            var locationX = geoPoint.Y;
+            var locationY = geoPoint.X;
 
             foreach (var marker in layer.Markers)
             {
                 int extraBounds = (10 / zoomLevel);
-                var x1 = Convert.ToDouble(marker.Latitude) - extraBounds;
-                var x2 = Convert.ToDouble(marker.Latitude) + extraBounds;
+                var x1 = Convert.ToDouble(marker.Latitude, CultureInfo.InvariantCulture) - extraBounds;
+                var x2 = Convert.ToDouble(marker.Latitude, CultureInfo.InvariantCulture) + extraBounds;
 
-                var y1 = Convert.ToDouble(marker.Longitude) - extraBounds;
-                var y2 = Convert.ToDouble(marker.Longitude) + extraBounds;
+                var y1 = Convert.ToDouble(marker.Longitude, CultureInfo.InvariantCulture) - extraBounds;
+                var y2 = Convert.ToDouble(marker.Longitude, CultureInfo.InvariantCulture) + extraBounds;
 
-                if (x1 < x && x < x2 && y1 < y && y < y2)
+                if (x1 < locationX && locationX < x2 && y1 < locationY && locationY < y2)
                 {
                     markerIndex = layer.Markers.IndexOf(marker);
                 }

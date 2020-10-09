@@ -8,50 +8,22 @@
              x:Class="MapsInteraction.MainPage">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="200"/>
-        </Grid.RowDefinitions>
         <maps:SfMaps x:Name="maps" Tapped="maps_Tapped" Panning="maps_Panning"
                      EnablePanning="False" ZoomLevel="3">
-                <maps:SfMaps.Layers>
-                    <maps:ImageryLayer x:Name="layer" GeoCoordinates="8.7832,34.5085" ZoomLevelChanging="layer_ZoomLevelChanging">
-                        <maps:ImageryLayer.Sublayers>
-                            <maps:ShapeFileLayer x:Name="subLayer" ShapeType="Polyline">
-                                <maps:ShapeFileLayer.ShapeSettings>
-                                    <maps:ShapeSetting  ShapeStrokeThickness="4"></maps:ShapeSetting>
-                                </maps:ShapeFileLayer.ShapeSettings>
-                            </maps:ShapeFileLayer>
-                        </maps:ImageryLayer.Sublayers>
-                        <maps:ImageryLayer.MarkerSettings>
-                            <maps:MapMarkerSetting x:Name="markerSetting" 
-                                                IconSize="20"
-                                               ></maps:MapMarkerSetting>
-                        </maps:ImageryLayer.MarkerSettings>
-                    </maps:ImageryLayer>
-                </maps:SfMaps.Layers>
-            </maps:SfMaps>
-
-        <ScrollView Grid.Row="1">
-            <Grid BackgroundColor="AliceBlue">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackLayout Grid.Row="0" Orientation="Horizontal">
-                    <Label TextColor="Black" FontSize="Body" Text="Latitude : "></Label>
-                    <Label VerticalOptions="Start" TextColor="Black" FontSize="Body" x:Name="latitudeEntry"></Label>
-                </StackLayout>
-                <StackLayout Grid.Row="1" Orientation="Horizontal">
-                    <Label TextColor="Black" FontSize="Body" Text="Longitude : "></Label>
-                    <Label TextColor="Black" FontSize="Body" x:Name="longitudeEntry"></Label>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" Grid.Row="2">
-                    <Label TextColor="Black" FontSize="Body" Text="Enable editing"></Label>
-                    <Switch VerticalOptions="Start" x:Name="editing" ></Switch>
-                </StackLayout>
-            </Grid>
-        </ScrollView>
+            <maps:SfMaps.Layers>
+                <maps:ImageryLayer x:Name="layer" GeoCoordinates="8.7832,34.5085" ZoomLevelChanging="layer_ZoomLevelChanging">
+                    <maps:ImageryLayer.Sublayers>
+                        <maps:ShapeFileLayer x:Name="subLayer" ShapeType="Polyline">
+                            <maps:ShapeFileLayer.ShapeSettings>
+                                <maps:ShapeSetting  ShapeStrokeThickness="4"></maps:ShapeSetting>
+                            </maps:ShapeFileLayer.ShapeSettings>
+                        </maps:ShapeFileLayer>
+                    </maps:ImageryLayer.Sublayers>
+                    <maps:ImageryLayer.MarkerSettings>
+                        <maps:MapMarkerSetting IconSize="20"/>
+                    </maps:ImageryLayer.MarkerSettings>
+                </maps:ImageryLayer>
+            </maps:SfMaps.Layers>
+        </maps:SfMaps>
     </Grid>
 </ContentPage>
