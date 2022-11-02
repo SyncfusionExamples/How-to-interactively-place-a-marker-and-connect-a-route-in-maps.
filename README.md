@@ -1,6 +1,6 @@
 # How to interactively place a marker and connect a route in maps
 
-This repository contains sample for how to interactively place a marker and connect a route in the [Syncfusion Xamarin.Forms Maps](https://help.syncfusion.com/xamarin/maps/getting-started) control.
+This repository contains sample to interactively place a marker and connect a route in the [Syncfusion Xamarin.Forms Maps](https://help.syncfusion.com/xamarin/maps/getting-started) control.
 
 Please refer the KB through this [link](https://www.syncfusion.com/kb/11962/how-to-interactively-place-the-markers-connect-and-drag-the-route-in-xamarin-maps-sfmaps).
 
